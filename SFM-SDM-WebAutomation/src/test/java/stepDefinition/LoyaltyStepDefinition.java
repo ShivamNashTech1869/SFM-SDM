@@ -1,12 +1,10 @@
 package stepDefinition;
 
-import ddt_config.DataReader;
 import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import org.testng.Assert;
-import util.Common;
 import util.TestContextSetup;
 
 
@@ -111,7 +109,6 @@ public class LoyaltyStepDefinition {
         tcs.pom.getLoyaltyOffersPage().selectSpecificStoreAndInclude();
     }
 
-
     @And("I select a random date and time for the offer")
     public void iSelectARandomDateAndTimeForTheOffer() {
         tcs.pom.getLoyaltyOffersPage().selectRandomDate();
@@ -127,6 +124,5 @@ public class LoyaltyStepDefinition {
     public void iShouldSeeTheVoucherSuccessfullyCreated() {
         Assert.assertTrue(tcs.pom.getLoyaltyOffersPage().isVoucherCreated());
     }
-
 
 }
