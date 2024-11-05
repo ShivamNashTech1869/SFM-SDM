@@ -32,7 +32,7 @@ public class Hooks {
 
     @After
     public void tearDown() throws IOException {
-//        tcs.base.initializeDriver().quit();
+        tcs.base.initializeDriver().quit();
     }
 
     @AfterStep

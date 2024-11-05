@@ -112,7 +112,7 @@ public class LoyaltyStepDefinition {
     @And("I select a random date and time for the offer")
     public void iSelectARandomDateAndTimeForTheOffer() {
         tcs.pom.getLoyaltyOffersPage().selectRandomDate();
-        tcs.pom.getLoyaltyOffersPage().selectRandomTime();
+        tcs.pom.getLoyaltyOffersPage().setRandomTime();
     }
 
     @When("I click the Create button")

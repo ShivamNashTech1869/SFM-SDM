@@ -43,6 +43,12 @@ public class Auth {
     @FindBy(xpath = "//span[text()='Send']") WebElement sendButton;
     @FindBy(id = "idvPin") WebElement codeInputBox;
 
+    @FindBy(xpath = "//button[span[text()='Try another way']]") WebElement tryAnotherWayButton;
+    @FindBy(xpath = "//li[contains(div, 'Google Authenticator')]") WebElement googleAuthenticatorOption;
+    @FindBy(id = "totpPin") WebElement otpPinInputBox;
+    @FindBy(xpath = "//button[contains(., 'Sign in with') and contains(., 'Google')]")
+    WebElement signInWithGoogleButton;
+
 
     public void signIn(String credentialData) throws IOException, InterruptedException {
         wait.until(ExpectedConditions.visibilityOf(emailInputBox));
@@ -55,40 +61,28 @@ public class Auth {
         wait.until(ExpectedConditions.elementToBeClickable(nextButton));
         nextButton.click();
 
-        wait.until(ExpectedConditions.visibilityOf(phoneNumberInputBox));
-        common.setImplicitWait(20);
-        wait.until(ExpectedConditions.elementToBeClickable(phoneCountryDropdown));
-        phoneCountryDropdown.click();
-
-//       Scroll to find and select the country "India"
-        wait.until(ExpectedConditions.visibilityOf(countryList));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", indiaCountryOption);
-
-        common.setImplicitWait(20);
-        wait.until(ExpectedConditions.elementToBeClickable(indiaCountryOption));
-        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", indiaCountryOption);
-
-
-        wait.until(ExpectedConditions.visibilityOf(phoneNumberInputBox));
-        phoneNumberInputBox.sendKeys(DataDriven.getTestData("Accounts", credentialData).get(3));
-
-
-        wait.until(ExpectedConditions.elementToBeClickable(sendButton));
-        sendButton.click();
-
-        common.setImplicitWait(30);
-        wait.until(ExpectedConditions.visibilityOf(codeInputBox));
-
-//      Optional: Wait for the verification code to arrive
+////     Optional: Wait for the verification code to arrive
 //       common.setImplicitWait(120);
+////      By using of phone number verification
+//        enterPhoneNumberAndVerify(credentialData);
+
+//      By using googleAuthenticatorOption
+        wait.until(ExpectedConditions.elementToBeClickable(tryAnotherWayButton));
+        tryAnotherWayButton.click();
+        common.setImplicitWait(30);
+        wait.until(ExpectedConditions.elementToBeClickable(googleAuthenticatorOption));
+        googleAuthenticatorOption.click();
+        wait.until(ExpectedConditions.visibilityOf(otpPinInputBox));
 
 //      Fetch the 2FA code
         twoFactorCode = twoFAKey();
-        codeInputBox.sendKeys(twoFactorCode);
+        otpPinInputBox.sendKeys(twoFactorCode);
 
+        Thread.sleep(1000);
         wait.until(ExpectedConditions.elementToBeClickable(nextButton));
         nextButton.click();
         common.setImplicitWait(60);
+        handleGoogleSignIn();
     }
 
     public String twoFAKey() throws IOException {
@@ -98,5 +92,37 @@ public class Auth {
         Log.info("twoFactorCode : " + twoFactorCode);
         return twoFactorCode;
     }
+
+    public void enterPhoneNumberAndVerify(String credentialData) throws IOException {
+        wait.until(ExpectedConditions.visibilityOf(phoneNumberInputBox));
+        wait.until(ExpectedConditions.elementToBeClickable(phoneCountryDropdown));
+        phoneCountryDropdown.click();
+
+        wait.until(ExpectedConditions.visibilityOf(countryList));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].scrollIntoView(true);", indiaCountryOption);
+
+        wait.until(ExpectedConditions.elementToBeClickable(indiaCountryOption));
+        ((JavascriptExecutor) driver).executeScript("arguments[0].click();", indiaCountryOption);
+
+        wait.until(ExpectedConditions.visibilityOf(phoneNumberInputBox));
+        phoneNumberInputBox.sendKeys(DataDriven.getTestData("Accounts", credentialData).get(3));
+
+        wait.until(ExpectedConditions.elementToBeClickable(sendButton));
+        sendButton.click();
+
+        wait.until(ExpectedConditions.visibilityOf(codeInputBox));
+    }
+
+    public void handleGoogleSignIn() {
+        try {
+            wait.until(ExpectedConditions.visibilityOf(signInWithGoogleButton));
+            wait.until(ExpectedConditions.elementToBeClickable(signInWithGoogleButton));
+            signInWithGoogleButton.click();
+        } catch (Exception e) {
+            System.out.println("Google sign-in button not available; assuming default Google sign-in.");
+        }
+    }
+
+
 
 }

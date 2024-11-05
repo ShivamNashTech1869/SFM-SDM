@@ -16,7 +16,7 @@ public class LoyaltyOffers {
     WebDriver driver;
     Random random;
     WebDriverWait wait;
-    String randomCode;
+    String promotionCode;
     String voucherTitle;
     int dollarSpendValue;
     int pointsOfferValue;
@@ -127,10 +127,10 @@ public class LoyaltyOffers {
     WebElement storeIdInput;
 
     //Date In Effect
-    @FindBy(css = "button[id=':ra:']")
+    @FindBy(xpath = "//button[span[text()='MM/DD/YYYY']]")
     WebElement calendarButton;
     By dateButtonsLocator = By.cssSelector("button[name='day']");
-    @FindBy(css = "select[id=':rc:']")
+    @FindBy(xpath = "//input[contains(@placeholder, 'Select time')]")
     WebElement timeBox;
     By timeOptionsLocator = By.cssSelector("select[id=':rc:'] option");
 
@@ -139,6 +139,10 @@ public class LoyaltyOffers {
 
     @FindBy(xpath = "//button[text()='Save']")
     WebElement saveButton;
+
+    @FindBy(xpath = "//h1[contains(@class, 'desktop-desktop-large-03-bold')]")
+    WebElement createdVoucherHeadingElement;
+
 
 
 
@@ -190,16 +194,16 @@ public class LoyaltyOffers {
      * with a 4-digit alphanumeric random number.
      */
     public void fillLoyaltyOfferFields() {
-        randomCode = generateRandomAlphanumeric(4);
+        promotionCode = generateRandomAlphanumeric(4);
         voucherTitle = generateRandomAlphanumeric(6);
         wait.until(ExpectedConditions.visibilityOf(loyaltyCodeInput));
-        loyaltyCodeInput.sendKeys(randomCode);
+        loyaltyCodeInput.sendKeys(promotionCode);
 
         wait.until(ExpectedConditions.visibilityOf(loyaltyTitleInput));
         loyaltyTitleInput.sendKeys(voucherTitle);
 
         wait.until(ExpectedConditions.visibilityOf(loyaltyDescriptionTextarea));
-        loyaltyDescriptionTextarea.sendKeys(String.format("Creating a voucher: %s, with code: %s", voucherTitle, randomCode));
+        loyaltyDescriptionTextarea.sendKeys(String.format("Creating a voucher: %s, with code: %s", voucherTitle, promotionCode));
     }
 
     /**This method generates a random alphanumeric string of specified length.
@@ -438,14 +442,24 @@ public class LoyaltyOffers {
         }
     }
 
+    public void setRandomTime() {
+      wait.until(ExpectedConditions.visibilityOf(timeBox));
+      timeBox.click();
+      int hour = random.nextInt(12) + 1;
+      int minute = random.nextInt(60);
+      String period = random.nextBoolean() ? "AM" : "PM";
+      String time = String.format("%02d:%02d %s", hour, minute, period);
+      timeBox.sendKeys(time);
+    }
     public void clickCreateButton() {
         wait.until(ExpectedConditions.elementToBeClickable(createButton));
         createButton.click();
     }
 
     public boolean isVoucherCreated() {
-        wait.until(ExpectedConditions.visibilityOf(saveButton));
-        return saveButton.isDisplayed();
+        wait.until(ExpectedConditions.visibilityOf(loyaltyCodeInput));
+        wait.until(ExpectedConditions.attributeToBe(loyaltyCodeInput, "disabled", "true"));
+        return !loyaltyCodeInput.isEnabled();
     }
 
     public void clickSaveButton() {
