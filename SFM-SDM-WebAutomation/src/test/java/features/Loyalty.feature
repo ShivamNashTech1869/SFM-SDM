@@ -1,7 +1,7 @@
 Feature: Loyalty
 
 # TC-1.0: Minimum Quantity Required, Add Product Manually, All Customers, All Stores
-  @LoyaltyOffer1
+  @LoyaltyOffer
   Scenario: Create a loyalty offer with Credit Points TC-1.0
     Given I am on the Promotions page and I click on Loyalty Offers
     When I select Shoppers Drug Mart as the store
@@ -18,7 +18,7 @@ Feature: Loyalty
     Then I should see the voucher successfully created
 
 # TC-1.1: Minimum Spend Amount, Add Product Manually, All Customers, All Stores
-  @LoyaltyOffer1
+  @LoyaltyOffer
   Scenario: Create a loyalty offer with Credit Points TC-1.1
     Given I am on the Promotions page and I click on Loyalty Offers
     When I select Shoppers Drug Mart as the store
@@ -35,7 +35,7 @@ Feature: Loyalty
     Then I should see the voucher successfully created
 
 # TC-1.2: Minimum Quantity Required, Import from CSV, All Customers, All Stores
-  @LoyaltyOffer
+  @LoyaltyOfferCSV
   Scenario: Create a loyalty offer with Credit Points TC-1.2
     Given I am on the Promotions page and I click on Loyalty Offers
     When I select Shoppers Drug Mart as the store
@@ -463,7 +463,7 @@ Feature: Loyalty
     Then I should see the voucher successfully created
 
 # TC-2.12: Minimum Quantity Required, Importing Product from CSV, All Customers, All Stores
-  @LoyaltyOffer
+  @LoyaltyOfferCSV
   Scenario: Create a loyalty offer with Points Multiplier TC-2.12
     Given I am on the Promotions page and I click on Loyalty Offers
     When I select Shoppers Drug Mart as the store

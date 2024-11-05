@@ -314,7 +314,7 @@ public class LoyaltyOffers {
         productInclusionsImportButton.click();
 
         wait.until(ExpectedConditions.elementToBeClickable(attachFileButton));
-        attachFileButton.click();
+//        attachFileButton.click();
 
         String filePath = System.getProperty("user.dir") + "/src/main/java/resources/externalData/exclusions.csv";
 

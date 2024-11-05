@@ -63,6 +63,11 @@ public class Deal {
     WebElement dealTitleInput;
     @FindBy(css = "textarea#deal_description")
     WebElement dealDescriptionInput;
+    @FindBy(css = "textarea#promo_description")
+    WebElement promoDescriptionInput;
+    @FindBy(css = "textarea#promo_description_fr")
+    WebElement promoDescriptionFRInput;
+
 
 
 
@@ -137,10 +142,10 @@ public class Deal {
     WebElement storeIdInput;
 
     //Date In Effect
-    @FindBy(css = "button[id=':r6:']")
+    @FindBy(xpath = "//button[span[text()='MM/DD/YYYY']]")
     WebElement calendarButton;
     By dateButtonsLocator = By.cssSelector("button[name='day']");
-    @FindBy(css = "select[id=':r8:']")
+    @FindBy(xpath = "//input[contains(@placeholder, 'Select time')]")
     WebElement timeBox;
     By timeOptionsLocator = By.cssSelector("select[id=':r8:'] option");
 
@@ -216,6 +221,12 @@ public class Deal {
 
         wait.until(ExpectedConditions.visibilityOf(dealDescriptionInput));
         dealDescriptionInput.sendKeys(String.format("Creating a deal with title: %s", dealTitle));
+
+        wait.until(ExpectedConditions.visibilityOf(promoDescriptionInput));
+        promoDescriptionInput.sendKeys(String.format("Promotion description of a deal with title: %s", dealTitle));
+
+        wait.until(ExpectedConditions.visibilityOf(promoDescriptionFRInput));
+        promoDescriptionFRInput.sendKeys(String.format("Promotion description(FR) of a deal with title: %s", dealTitle));
     }
 
 
@@ -454,14 +465,25 @@ public class Deal {
         }
     }
 
+    public void setRandomTime() {
+        wait.until(ExpectedConditions.visibilityOf(timeBox));
+        timeBox.click();
+        int hour = random.nextInt(12) + 1;
+        int minute = random.nextInt(60);
+        String period = random.nextBoolean() ? "AM" : "PM";
+        String time = String.format("%02d:%02d %s", hour, minute, period);
+        timeBox.sendKeys(time);
+    }
+
     public void clickCreateButton() {
         wait.until(ExpectedConditions.elementToBeClickable(createButton));
         createButton.click();
     }
 
     public boolean isVoucherCreated() {
-        wait.until(ExpectedConditions.visibilityOf(downloadButton));
-        return downloadButton.isDisplayed();
+        wait.until(ExpectedConditions.visibilityOf(dealTitleInput));
+        wait.until(ExpectedConditions.attributeToBe(dealTitleInput, "disabled", "true"));
+        return !dealTitleInput.isEnabled();
     }
 
 

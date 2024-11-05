@@ -1,12 +1,11 @@
 Feature: Deal
 
-
 # TC-1.0: Minimum Quantity Required, Add Product Manually, All Deal Customers, All Deal Stores
-  @Deal1.0
+  @Deal
   Scenario: Create a deal with Credit Points TC-1.0
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
-    And I create a deal with "Purchasewithpurchases"
+    And I create a deal with "Purchasewithpurchase"
     And I fill the deal input fields
     And I select the deal that applies at product level with minimum quantity required condition
     And I add a product manually and include it in the deal
@@ -23,7 +22,7 @@ Feature: Deal
   Scenario: Create a deal with Credit Points TC-1.1
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
-    And I create a deal with "Purchasewithpurchases"
+    And I create a deal with "Purchasewithpurchase"
     And I fill the deal input fields
     And I select the deal that applies at product level with a minimum spend required condition
     And I add a product manually and include it in the deal
@@ -40,7 +39,7 @@ Feature: Deal
   Scenario: Create a deal with Credit Points TC-1.2
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
-    And I create a deal with "Purchasewithpurchases"
+    And I create a deal with "Purchasewithpurchase"
     And I fill the deal input fields
     And I select the offer that applies as basket level and set deal conditions
     And I add a product manually and include it in the deal
@@ -53,11 +52,11 @@ Feature: Deal
     Then I should see the deal voucher successfully created
 
 # TC-1.3: Minimum Quantity Required, Import from CSV, All Deal Customers, All Deal Stores
-  @Deal
+  @DealCSV
   Scenario: Create a deal with Credit Points TC-1.3
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
-    And I create a deal with "Purchasewithpurchases"
+    And I create a deal with "Purchasewithpurchase"
     And I fill the deal input fields
     And I select the deal that applies at product level with minimum quantity required condition
     And I import product inclusions from a CSV file in the deal
@@ -74,7 +73,7 @@ Feature: Deal
   Scenario: Create a deal with Credit Points TC-1.4
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
-    And I create a deal with "Purchasewithpurchases"
+    And I create a deal with "Purchasewithpurchase"
     And I fill the deal input fields
     And I select the deal that applies at product level with a minimum spend required condition
     And I add a product manually and include it in the deal
@@ -91,7 +90,7 @@ Feature: Deal
   Scenario: Create a deal with Credit Points TC-1.5
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
-    And I create a deal with "Purchasewithpurchases"
+    And I create a deal with "Purchasewithpurchase"
     And I fill the deal input fields
     And I select the offer that applies as basket level and set deal conditions
     And I add a product manually and include it in the deal
@@ -108,7 +107,7 @@ Feature: Deal
   Scenario: Create a deal with Credit Points TC-1.6
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
-    And I create a deal with "Purchasewithpurchases"
+    And I create a deal with "Purchasewithpurchase"
     And I fill the deal input fields
     And I select the deal that applies at product level with minimum quantity required condition
     And I add a product manually and include it in the deal
@@ -125,7 +124,7 @@ Feature: Deal
   Scenario: Create a deal with Credit Points TC-1.7
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
-    And I create a deal with "Purchasewithpurchases"
+    And I create a deal with "Purchasewithpurchase"
     And I fill the deal input fields
     And I select the deal that applies at product level with a minimum spend required condition
     And I add a product manually and include it in the deal
@@ -142,7 +141,7 @@ Feature: Deal
   Scenario: Create a deal with Credit Points TC-1.8
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
-    And I create a deal with "Purchasewithpurchases"
+    And I create a deal with "Purchasewithpurchase"
     And I fill the deal input fields
     And I select the deal that applies at product level with minimum quantity required condition
     And I add a product manually and include it in the deal
@@ -159,7 +158,7 @@ Feature: Deal
   Scenario: Create a deal with Credit Points TC-1.9
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
-    And I create a deal with "Purchasewithpurchases"
+    And I create a deal with "Purchasewithpurchase"
     And I fill the deal input fields
     And I select the offer that applies as basket level and set deal conditions
     And I add a product manually and include it in the deal
@@ -176,7 +175,7 @@ Feature: Deal
   Scenario: Create a deal with Credit Points TC-1.10
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
-    And I create a deal with "Purchasewithpurchases"
+    And I create a deal with "Purchasewithpurchase"
     And I fill the deal input fields
     And I select the deal that applies at product level with minimum quantity required condition
     And I add a product manually and include it in the deal
@@ -193,7 +192,7 @@ Feature: Deal
   Scenario: Create a deal with Credit Points TC-1.11
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
-    And I create a deal with "Purchasewithpurchases"
+    And I create a deal with "Purchasewithpurchase"
     And I fill the deal input fields
     And I select the deal that applies at product level with a minimum spend required condition
     And I add a product manually and include it in the deal
@@ -210,7 +209,7 @@ Feature: Deal
   Scenario: Create a deal with Credit Points TC-1.12
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
-    And I create a deal with "Purchasewithpurchases"
+    And I create a deal with "Purchasewithpurchase"
     And I fill the deal input fields
     And I select the offer that applies as basket level and set deal conditions
     And I add a product manually and include it in the deal
@@ -227,7 +226,7 @@ Feature: Deal
   Scenario: Create a deal with Credit Points TC-1.13
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
-    And I create a deal with "Purchasewithpurchases"
+    And I create a deal with "Purchasewithpurchase"
     And I fill the deal input fields
     And I select the deal that applies at product level with minimum quantity required condition
     And I add a product manually and include it in the deal
@@ -244,7 +243,7 @@ Feature: Deal
   Scenario: Create a deal with Credit Points TC-1.14
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
-    And I create a deal with "Purchasewithpurchases"
+    And I create a deal with "Purchasewithpurchase"
     And I fill the deal input fields
     And I select the deal that applies at product level with a minimum spend required condition
     And I add a product manually and include it in the deal
@@ -261,7 +260,7 @@ Feature: Deal
   Scenario: Create a deal with Credit Points TC-1.15
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
-    And I create a deal with "Purchasewithpurchases"
+    And I create a deal with "Purchasewithpurchase"
     And I fill the deal input fields
     And I select the offer that applies as basket level and set deal conditions
     And I add a product manually and include it in the deal
@@ -329,7 +328,7 @@ Feature: Deal
     Then I should see the deal voucher successfully created
 
 # TC-2.3: Minimum Quantity Required, Import from CSV, All Deal Customers, All Deal Stores
-  @Deal
+  @DealCSV
   Scenario: Create a deal with Credit Points TC-2.3
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
@@ -448,7 +447,7 @@ Feature: Deal
     Then I should see the deal voucher successfully created
 
 # TC-2.10: Minimum Quantity Required, Import from CSV, Deal Exclusions, Specific Deal Store ID
-  @Deal
+  @DealCSV
   Scenario: Create a deal with Credit Points TC-2.10
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
@@ -465,7 +464,7 @@ Feature: Deal
     Then I should see the deal voucher successfully created
 
 # TC-2.11: Minimum Spend Required, Import from CSV, Specific Deal Customers, All Deal Stores
-  @Deal
+  @DealCSV
   Scenario: Create a deal with Credit Points TC-2.11
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal
@@ -482,7 +481,7 @@ Feature: Deal
     Then I should see the deal voucher successfully created
 
 # TC-2.12: Basket Level, Import from CSV, Deal Exclusions, Specific Deal Store ID
-  @Deal
+  @DealCSV
   Scenario: Create a deal with Credit Points TC-2.12
     Given I am on the Promotions page and I click on Deal
     When I select Shoppers Drug Mart as the store for deal

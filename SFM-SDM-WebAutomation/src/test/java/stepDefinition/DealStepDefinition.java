@@ -4,6 +4,7 @@ import io.cucumber.java.en.And;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.testng.Assert;
 import util.TestContextSetup;
 
 
@@ -106,7 +107,7 @@ public class DealStepDefinition {
     @And("I select a random date and time for the deal offer")
     public void iSelectARandomDateAndTimeForTheDealOffer() {
         tcs.pom.getDealPage().selectRandomDate();
-        tcs.pom.getDealPage().selectRandomTime();
+        tcs.pom.getDealPage().setRandomTime();
     }
 
     @When("I click the Create Deal button")
@@ -116,6 +117,6 @@ public class DealStepDefinition {
 
     @Then("I should see the deal voucher successfully created")
     public void iShouldSeeTheDealVoucherSuccessfullyCreated() {
-        tcs.pom.getDealPage().isVoucherCreated();
+        Assert.assertTrue(tcs.pom.getDealPage().isVoucherCreated());
     }
 }
